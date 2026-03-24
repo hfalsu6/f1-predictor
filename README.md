@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# F1 Predictor
+
+An F1 championship scenario predictor — simulate upcoming race finishes via drag-and-drop and watch projected championship standings update in real time.
+
+![F1 Predictor](public/og-image.svg)
+
+## Features
+
+- **Drag-and-drop Race Simulator** — Assign drivers to finishing positions (1–22) for any upcoming race. Supports DNF, DNS, and DSQ statuses.
+- **Sprint Race Support** — Separate sprint simulation with official sprint scoring (top 8).
+- **Live Championship Projections** — Projected driver and constructor standings recalculate instantly as you build your predicted results.
+- **Multi-Race Simulation** — Chain simulations across the entire remaining season to model full championship scenarios.
+- **Championship Swing Analysis** — See exactly how many points each driver gains or loses relative to their rivals after your simulated race.
+- **Title Watch** — Championship clinching math: see what combinations of results a driver needs to win the title.
+- **Circuit Maps** — Interactive Leaflet map and 3D globe visualization for every circuit on the calendar.
+- **Season Calendar** — Full race schedule with sprint weekend detection.
+- **Share Scenarios** — Encode your simulation into a shareable URL.
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| UI | React 19 + Tailwind CSS 4 |
+| State | Zustand 5 + Immer |
+| Drag & Drop | @dnd-kit/core + @dnd-kit/sortable |
+| Maps | Leaflet + react-leaflet |
+| 3D Globe | globe.gl + Three.js |
+| Language | TypeScript (strict) |
+| Testing | Vitest + React Testing Library |
+| Data | Jolpi/Ergast F1 API |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/f1-predictor.git
+cd f1-predictor
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Other Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build      # Production build
+npm run lint       # Run ESLint
+npm run test       # Run unit tests (Vitest)
+npm run test:ui    # Run tests with interactive UI
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+f1-predictor/
+├── app/                    # Next.js App Router pages
+│   ├── standings/          # Driver & constructor standings
+│   ├── simulate/           # Multi-race simulator
+│   ├── simulate/[round]/   # Round-specific drag-and-drop simulator
+│   ├── maps/               # Circuit map visualization
+│   ├── calendar/           # Season calendar
+│   └── title/              # Championship clinching math
+├── components/
+│   ├── simulator/          # Drag-and-drop race UI components
+│   ├── standings/          # Standings tables & driver profile drawer
+│   ├── preview/            # Live projected standings panel
+│   ├── maps/               # Circuit map & 3D globe components
+│   └── ui/                 # Shared UI primitives (Button, Card, Badge, etc.)
+├── lib/
+│   ├── api/                # Server-side F1 data fetching & type mapping
+│   └── f1/                 # Pure F1 business logic (points, standings, title math)
+├── store/
+│   └── simulationStore.ts  # Zustand store — all simulation state & derived standings
+├── types/                  # TypeScript domain types & raw API shapes
+└── constants/
+    └── f1.ts               # Points tables, constructor colors, circuit data
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Data** — Server components fetch live standings and schedule from the [Jolpi/Ergast F1 API](https://api.jolpi.ca/ergast/f1) with ISR revalidation (standings: 1 hour, schedule: 24 hours).
+2. **Simulate** — Users drag drivers into finishing positions in the client-side simulator. Each result is stored in a Zustand store keyed by round number.
+3. **Project** — The store derives projected standings by applying all simulated race results on top of the current real-world baseline standings, using official F1 points rules.
+4. **Share** — The current simulation state is encoded into URL parameters so scenarios can be shared.
 
-## Deploy on Vercel
+## Data Source
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Race data is sourced from the [Jolpi mirror of the Ergast F1 API](https://api.jolpi.ca/ergast/f1). This includes current season standings, race schedule, and completed race results.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT

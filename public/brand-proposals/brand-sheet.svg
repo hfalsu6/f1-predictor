@@ -1,0 +1,31 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0E0708"/>
+  <rect x="48" y="48" width="1504" height="804" rx="40" fill="url(#panel)"/>
+  <text x="88" y="132" fill="#F7F2EC" font-family="Arial, sans-serif" font-size="48" font-weight="700">Brand Proposals</text>
+  <text x="88" y="172" fill="#C5B8AD" font-family="Arial, sans-serif" font-size="24">Three directions for the F1 scenario predictor</text>
+
+  <rect x="86" y="224" width="438" height="560" rx="28" fill="#170C0E" stroke="#2C171B"/>
+  <image href="apex-grid-icon.svg" x="134" y="270" width="340" height="340"/>
+  <text x="134" y="658" fill="#F7F2EC" font-family="Arial, sans-serif" font-size="38" font-weight="700">Apex Grid</text>
+  <text x="134" y="700" fill="#D7C8BD" font-family="Arial, sans-serif" font-size="22">Fast, technical, motorsport-native.</text>
+  <text x="134" y="734" fill="#A99080" font-family="Arial, sans-serif" font-size="18">Racing line + grid discipline.</text>
+
+  <rect x="581" y="224" width="438" height="560" rx="28" fill="#170C0E" stroke="#2C171B"/>
+  <image href="polepulse-icon.svg" x="629" y="270" width="340" height="340"/>
+  <text x="629" y="658" fill="#F7F2EC" font-family="Arial, sans-serif" font-size="38" font-weight="700">PolePulse</text>
+  <text x="629" y="700" fill="#D7C8BD" font-family="Arial, sans-serif" font-size="22">More energetic and modern.</text>
+  <text x="629" y="734" fill="#A99080" font-family="Arial, sans-serif" font-size="18">Telemetry pulse meets race tempo.</text>
+
+  <rect x="1076" y="224" width="438" height="560" rx="28" fill="#170C0E" stroke="#2C171B"/>
+  <image href="griddelta-icon.svg" x="1124" y="270" width="340" height="340"/>
+  <text x="1124" y="658" fill="#F7F2EC" font-family="Arial, sans-serif" font-size="38" font-weight="700">GridDelta</text>
+  <text x="1124" y="700" fill="#D7C8BD" font-family="Arial, sans-serif" font-size="22">Sharper, more analytical.</text>
+  <text x="1124" y="734" fill="#A99080" font-family="Arial, sans-serif" font-size="18">Championship swings and position change.</text>
+
+  <defs>
+    <linearGradient id="panel" x1="108" y1="80" x2="1480" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B090C"/>
+      <stop offset="1" stop-color="#130F16"/>
+    </linearGradient>
+  </defs>
+</svg>

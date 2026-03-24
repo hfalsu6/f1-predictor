@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#160b0b"/>
+      <stop offset="50%" stop-color="#1f0e0e"/>
+      <stop offset="100%" stop-color="#0a0505"/>
+    </linearGradient>
+
+    <!-- Red glow gradient for accent bar -->
+    <linearGradient id="redBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e00700" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#e00700" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Speed line gradient -->
+    <linearGradient id="streak1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e00700" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#e00700" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#e00700" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="streak2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8000" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ff8000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ff8000" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="streak3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="streak4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e00700" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#e00700" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#e00700" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Title glow filter -->
+    <filter id="redGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Vignette -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.6"/>
+    </radialGradient>
+
+    <!-- Left side red glow -->
+    <radialGradient id="leftGlow" cx="0%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#e00700" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#e00700" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Clip for speed lines -->
+    <clipPath id="mainClip">
+      <rect width="1200" height="630"/>
+    </clipPath>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Left glow bloom -->
+  <rect width="1200" height="630" fill="url(#leftGlow)"/>
+
+  <!-- Speed lines group — clipped, rotated 20° -->
+  <g clip-path="url(#mainClip)" opacity="1">
+    <!-- Main red streaks -->
+    <rect x="-200" y="180" width="1600" height="3" fill="url(#streak1)" transform="rotate(-20 600 315)"/>
+    <rect x="-200" y="210" width="1600" height="1.5" fill="url(#streak1)" transform="rotate(-20 600 315)"/>
+    <rect x="-200" y="230" width="1600" height="5" fill="url(#streak1)" transform="rotate(-20 600 315)" opacity="0.5"/>
+    <rect x="-200" y="260" width="1600" height="2" fill="url(#streak4)" transform="rotate(-20 600 315)"/>
+
+    <!-- Orange accent streak -->
+    <rect x="-200" y="290" width="1600" height="2" fill="url(#streak2)" transform="rotate(-20 600 315)"/>
+    <rect x="-200" y="310" width="1600" height="1" fill="url(#streak2)" transform="rotate(-20 600 315)" opacity="0.6"/>
+
+    <!-- Subtle white streaks -->
+    <rect x="-200" y="340" width="1600" height="1" fill="url(#streak3)" transform="rotate(-20 600 315)"/>
+    <rect x="-200" y="360" width="1600" height="0.5" fill="url(#streak3)" transform="rotate(-20 600 315)" opacity="0.5"/>
+
+    <!-- Extra red streaks (upper cluster) -->
+    <rect x="-200" y="130" width="1600" height="1.5" fill="url(#streak1)" transform="rotate(-20 600 315)" opacity="0.4"/>
+    <rect x="-200" y="148" width="1600" height="1" fill="url(#streak1)" transform="rotate(-20 600 315)" opacity="0.25"/>
+
+    <!-- Lower cluster -->
+    <rect x="-200" y="400" width="1600" height="1.5" fill="url(#streak4)" transform="rotate(-20 600 315)" opacity="0.35"/>
+    <rect x="-200" y="420" width="1600" height="1" fill="url(#streak2)" transform="rotate(-20 600 315)" opacity="0.2"/>
+  </g>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="6" height="630" fill="url(#redBar)" opacity="0.9"/>
+  <rect x="0" y="0" width="2" height="630" fill="#e00700" opacity="1"/>
+
+  <!-- Vignette overlay -->
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+
+  <!-- Top border line -->
+  <rect x="0" y="0" width="1200" height="1" fill="#e00700" opacity="0.3"/>
+  <!-- Bottom border line -->
+  <rect x="0" y="629" width="1200" height="1" fill="#e00700" opacity="0.2"/>
+
+  <!-- ─── CONTENT ─── -->
+
+  <!-- "F1" large ghost letterform — decorative background -->
+  <text
+    x="920" y="480"
+    font-family="'Arial Black', 'Impact', sans-serif"
+    font-size="520"
+    font-weight="900"
+    fill="#e00700"
+    opacity="0.04"
+    letter-spacing="-20">F1</text>
+
+  <!-- Eyebrow label -->
+  <text
+    x="88" y="200"
+    font-family="'Courier New', 'IBM Plex Mono', monospace"
+    font-size="13"
+    font-weight="400"
+    fill="#e00700"
+    letter-spacing="4"
+    opacity="0.9">CHAMPIONSHIP SCENARIO SIMULATOR</text>
+
+  <!-- Divider line after eyebrow -->
+  <rect x="88" y="214" width="340" height="1" fill="#e00700" opacity="0.35"/>
+
+  <!-- Main title: "F1" -->
+  <text
+    x="80" y="360"
+    font-family="'Arial Black', 'Impact', sans-serif"
+    font-size="210"
+    font-weight="900"
+    fill="#e00700"
+    letter-spacing="-4"
+    filter="url(#redGlow)">F1</text>
+
+  <!-- Main title: "PREDICTOR" -->
+  <text
+    x="82" y="450"
+    font-family="'Arial Black', 'Helvetica Neue', sans-serif"
+    font-size="88"
+    font-weight="900"
+    fill="#f1f0f2"
+    letter-spacing="12">PREDICTOR</text>
+
+  <!-- "PRO" tag -->
+  <rect x="85" y="468" width="82" height="28" rx="3" fill="#e00700"/>
+  <text
+    x="126" y="487"
+    font-family="'Arial Black', sans-serif"
+    font-size="14"
+    font-weight="900"
+    fill="#ffffff"
+    text-anchor="middle"
+    letter-spacing="3">PRO</text>
+
+  <!-- Subtitle -->
+  <text
+    x="88" y="535"
+    font-family="'Arial', 'Helvetica', sans-serif"
+    font-size="17"
+    font-weight="400"
+    fill="#9a9098"
+    letter-spacing="1">Predict race outcomes. Simulate championship standings. Race by race.</text>
+
+  <!-- Constructor team color strip -->
+  <g transform="translate(88, 570)">
+    <!-- Red Bull -->
+    <rect x="0"   y="0" width="80" height="4" rx="2" fill="#3671c6"/>
+    <!-- Ferrari -->
+    <rect x="86"  y="0" width="80" height="4" rx="2" fill="#e8002d"/>
+    <!-- Mercedes -->
+    <rect x="172" y="0" width="80" height="4" rx="2" fill="#27f4d2"/>
+    <!-- McLaren -->
+    <rect x="258" y="0" width="80" height="4" rx="2" fill="#ff8000"/>
+    <!-- Aston Martin -->
+    <rect x="344" y="0" width="80" height="4" rx="2" fill="#358c75"/>
+    <!-- Alpine -->
+    <rect x="430" y="0" width="80" height="4" rx="2" fill="#ff87bc"/>
+    <!-- Haas -->
+    <rect x="516" y="0" width="80" height="4" rx="2" fill="#b6babd"/>
+    <!-- RB -->
+    <rect x="602" y="0" width="80" height="4" rx="2" fill="#6692ff"/>
+    <!-- Williams -->
+    <rect x="688" y="0" width="80" height="4" rx="2" fill="#64c4ff"/>
+    <!-- Sauber -->
+    <rect x="774" y="0" width="80" height="4" rx="2" fill="#52e252"/>
+  </g>
+
+  <!-- Right side: abstract circuit line (Monaco-inspired) -->
+  <g transform="translate(820, 80)" opacity="0.18" stroke="#e00700" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="
+      M 60,20
+      L 200,20
+      Q 240,20 240,60
+      L 240,100
+      Q 240,130 210,130
+      L 180,130
+      Q 160,130 160,150
+      L 160,200
+      Q 160,240 130,240
+      L 80,240
+      Q 40,240 40,200
+      L 40,170
+      Q 40,150 20,150
+      L 0,150
+      Q -20,150 -20,130
+      L -20,80
+      Q -20,50 10,50
+      L 40,50
+      Q 60,50 60,20
+      Z
+    "/>
+    <!-- Circuit detail lines -->
+    <line x1="60" y1="20" x2="60" y2="50"/>
+    <line x1="120" y1="20" x2="120" y2="35"/>
+    <line x1="240" y1="80" x2="260" y2="80"/>
+    <circle cx="200" cy="20" r="4" fill="#e00700" stroke="none" opacity="0.6"/>
+    <circle cx="240" cy="100" r="4" fill="#e00700" stroke="none" opacity="0.6"/>
+    <circle cx="160" cy="200" r="4" fill="#e00700" stroke="none" opacity="0.6"/>
+    <circle cx="40" cy="170" r="4" fill="#e00700" stroke="none" opacity="0.6"/>
+  </g>
+
+  <!-- Right side: stat cards -->
+  <g transform="translate(820, 340)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="170" height="70" rx="5" fill="#1f0e0e" stroke="#e00700" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="16" y="24" font-family="'Courier New', monospace" font-size="10" fill="#e00700" letter-spacing="2" opacity="0.8">DRIVERS</text>
+    <text x="16" y="55" font-family="'Arial Black', sans-serif" font-size="30" font-weight="900" fill="#f1f0f2">20</text>
+    <rect x="0" y="66" width="170" height="2" rx="1" fill="#e00700" opacity="0.3"/>
+
+    <!-- Card 2 -->
+    <rect x="186" y="0" width="170" height="70" rx="5" fill="#1f0e0e" stroke="#e00700" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="16" y="24" font-family="'Courier New', monospace" font-size="10" fill="#ff8000" letter-spacing="2" opacity="0.8" transform="translate(186,0)">RACES</text>
+    <text x="202" y="55" font-family="'Arial Black', sans-serif" font-size="30" font-weight="900" fill="#f1f0f2">24</text>
+    <rect x="186" y="66" width="170" height="2" rx="1" fill="#ff8000" opacity="0.3"/>
+  </g>
+</svg>
