@@ -34,7 +34,7 @@ export default async function StandingsPage() {
   const upcomingCount   = schedule.length - completedCount;
 
   return (
-    <div style={{ padding: "32px" }}>
+    <div className="page-root">
       <div style={{ maxWidth: "960px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "32px" }}>
 
         {/* Hero — full-width next race card (links to Maps) */}
@@ -112,7 +112,7 @@ export default async function StandingsPage() {
         )}
 
         {/* Standings + Calendar sidebar */}
-        <div style={{ display: "grid", gridTemplateColumns: "8fr 4fr", gap: "28px" }}>
+        <div className="standings-grid" style={{ display: "grid", gridTemplateColumns: "8fr 4fr", gap: "28px" }}>
 
           {/* Driver standings */}
           <div>
@@ -127,7 +127,7 @@ export default async function StandingsPage() {
                 </Link>
               )}
             </div>
-            <div style={{ background: "rgba(224,7,0,0.02)", border: "1px solid rgba(224,7,0,0.08)", borderRadius: "12px", overflow: "hidden" }}>
+            <div className="table-scroll" style={{ background: "rgba(224,7,0,0.02)", border: "1px solid rgba(224,7,0,0.08)", borderRadius: "12px", overflow: "hidden" }}>
               <StandingsWithProfile standings={drivers} />
             </div>
           </div>

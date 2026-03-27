@@ -51,7 +51,7 @@ export function SimulatorLayout({
   }, []);
 
   return (
-    <div style={{
+    <div className="sim-container" style={{
       display: "flex",
       flexDirection: "column",
       height: "100%",
@@ -60,7 +60,7 @@ export function SimulatorLayout({
     }}>
 
       {/* ── Header ── */}
-      <header style={{
+      <header className="sim-header" style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -126,7 +126,7 @@ export function SimulatorLayout({
         </div>
 
         {/* Right: Progress pill + actions */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div className="sim-header-right" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           {/* Progress */}
           <div style={{
             display: "flex",
@@ -225,7 +225,7 @@ export function SimulatorLayout({
       {currentRace && (
         <div
           key={currentRace.round}
-          className="animate-fade-slide-up"
+          className="animate-fade-slide-up sim-race-bar"
           style={{
             display: "flex",
             alignItems: "center",
@@ -258,8 +258,8 @@ export function SimulatorLayout({
           }}>
             {currentRace.raceName}
           </span>
-          <span style={{ width: "1px", height: "14px", background: "var(--border)", flexShrink: 0 }} />
-          <span style={{
+          <span className="sim-race-bar-divider" style={{ width: "1px", height: "14px", background: "var(--border)", flexShrink: 0 }} />
+          <span className="sim-race-bar-location" style={{
             fontFamily: "var(--font-mono)",
             fontSize: "11px",
             color: "var(--text-secondary)",
@@ -267,7 +267,7 @@ export function SimulatorLayout({
           }}>
             {currentRace.locality}, {currentRace.country}
           </span>
-          <span style={{ width: "1px", height: "14px", background: "var(--border)", flexShrink: 0 }} />
+          <span className="sim-race-bar-divider" style={{ width: "1px", height: "14px", background: "var(--border)", flexShrink: 0 }} />
           <span style={{
             fontFamily: "var(--font-mono)",
             fontSize: "11px",
@@ -356,7 +356,7 @@ export function SimulatorLayout({
       )}
 
       {/* ── Race timeline (own full-width scrollable row) ── */}
-      <div style={{
+      <div className="sim-timeline" style={{
         borderBottom: "1px solid var(--border)",
         background: "var(--bg-base)",
         flexShrink: 0,
@@ -368,8 +368,8 @@ export function SimulatorLayout({
       <ChampionshipSwingPanel />
 
       {/* ── Main content: full-width 3-column layout ── */}
-      <div style={{ flex: 1, overflow: "hidden", display: "flex" }}>
-        <div style={{
+      <div className="sim-body" style={{ flex: 1, overflow: "hidden", display: "flex" }}>
+        <div className="sim-panels" style={{
           width: "100%",
           display: "flex",
           overflow: "hidden",
@@ -381,7 +381,7 @@ export function SimulatorLayout({
           </div>
 
           {/* Panel 3: Projected standings */}
-          <div style={{
+          <div className="sim-standings-panel" style={{
             width: "260px",
             flexShrink: 0,
             borderLeft: "1px solid var(--border)",

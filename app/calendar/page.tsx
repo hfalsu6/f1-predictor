@@ -25,7 +25,7 @@ export default async function CalendarPage() {
   const upcomingCount  = schedule.length - completedCount;
 
   return (
-    <div style={{ padding: "32px" }}>
+    <div className="page-root">
       <div style={{ maxWidth: "880px", margin: "0 auto" }}>
 
             {/* Page header */}
@@ -39,7 +39,7 @@ export default async function CalendarPage() {
             </div>
 
             {/* Stats row */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginBottom: "28px" }}>
+            <div className="stats-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginBottom: "28px" }}>
               {[
                 { label: "Total Rounds",   value: schedule.length,   icon: "flag" },
                 { label: "Completed",      value: completedCount,     icon: "check_circle" },

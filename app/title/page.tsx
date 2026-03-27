@@ -14,7 +14,7 @@ export default async function TitlePage() {
   const completedRaces = totalRaces - futureRaces.length;
 
   return (
-    <div style={{ padding: "32px", maxWidth: "1100px", margin: "0 auto" }}>
+    <div className="page-root" style={{ maxWidth: "1100px", margin: "0 auto" }}>
       <div style={{ marginBottom: "28px" }}>
         <h1 style={{ fontSize: "26px", fontWeight: 800, margin: "0 0 6px", letterSpacing: "-0.02em" }}>
           Title Watch

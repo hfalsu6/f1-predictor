@@ -148,3 +148,165 @@ body {
 .font-mono    { font-family: var(--font-mono); }
 .font-data    { font-family: var(--font-data); }
 .font-display { font-family: var(--font-display); }
+
+/* ── Sidebar panel (desktop default) ── */
+.sidebar-panel {
+  width: 240px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(224,7,0,0.07);
+  background: var(--bg-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.sidebar-backdrop  { display: none; }
+.mobile-menu-btn   { display: none; }
+.sidebar-close-btn { display: none; }
+
+/* ── Page root padding ── */
+.page-root { padding: 32px; }
+
+/* ── Table horizontal scroll ── */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── Mobile breakpoint ── */
+@media (max-width: 768px) {
+
+  /* Sidebar → fixed drawer */
+  .sidebar-panel {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%;
+    width: 280px;
+    max-width: 85vw;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid rgba(224,7,0,0.12);
+  }
+  .sidebar-panel--open {
+    transform: translateX(0);
+    box-shadow: 8px 0 40px rgba(0,0,0,0.6);
+  }
+
+  /* Backdrop */
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 199;
+    pointer-events: none;
+    transition: background 0.28s ease;
+  }
+  .sidebar-backdrop--open {
+    background: rgba(0,0,0,0.7);
+    pointer-events: all;
+    backdrop-filter: blur(3px);
+  }
+
+  /* Hamburger */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 14px; left: 14px;
+    z-index: 198;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-mid);
+    color: var(--text-primary);
+    cursor: pointer;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  }
+
+  /* Close button inside sidebar */
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* Sidebar nav items: bigger touch targets */
+  .sidebar-link { min-height: 48px; font-size: 15px !important; padding: 12px 14px !important; }
+
+  /* Page root: push down below hamburger, reduce horizontal padding */
+  .page-root { padding: 72px 16px 32px !important; }
+
+  /* Standings grid: stack vertically */
+  .standings-grid { grid-template-columns: 1fr !important; }
+
+  /* 3-col stats row: single column */
+  .stats-3col { grid-template-columns: 1fr !important; }
+
+  /* Hero race card */
+  .hero-race-card { min-height: 160px !important; }
+  .hero-race-card h1 { font-size: 22px !important; }
+
+  /* Simulator container: allow vertical scroll instead of clipping */
+  .sim-container {
+    height: auto !important;
+    min-height: 100svh;
+    overflow-y: auto !important;
+  }
+  .sim-body {
+    flex: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    flex-direction: column !important;
+  }
+  .sim-panels {
+    flex-direction: column !important;
+    overflow: visible !important;
+    height: auto !important;
+    flex: none !important;
+  }
+  .sim-driver-pool {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(224,7,0,0.07) !important;
+    max-height: 380px;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sim-finishing-area {
+    padding: 14px 16px !important;
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+  .sim-standings-panel {
+    width: 100% !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(224,7,0,0.07) !important;
+    max-height: 360px;
+    flex-shrink: 0;
+  }
+  /* Simulator header: compress on mobile */
+  .sim-header {
+    height: auto !important;
+    min-height: 56px;
+    flex-wrap: wrap;
+    padding: 10px 14px !important;
+    gap: 8px;
+  }
+  .sim-header-right { flex-wrap: wrap; gap: 8px !important; }
+  /* Race context bar: truncate overflowing info */
+  .sim-race-bar {
+    flex-wrap: wrap;
+    gap: 8px !important;
+    padding: 8px 14px !important;
+  }
+  .sim-race-bar-divider { display: none; }
+  .sim-race-bar-location { display: none; }
+  /* Multi-race progress: horizontal scroll */
+  .sim-timeline { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}

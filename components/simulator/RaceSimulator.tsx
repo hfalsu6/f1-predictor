@@ -570,7 +570,7 @@ export function RaceSimulator({ mode = "race" }: { mode?: "race" | "sprint" }) {
 
         {/* ── Left: Team-grouped driver pool ── */}
         <div
-          className="animate-scale-in"
+          className="animate-scale-in sim-driver-pool"
           style={{
             width: "300px",
             flexShrink: 0,
@@ -625,7 +625,7 @@ export function RaceSimulator({ mode = "race" }: { mode?: "race" | "sprint" }) {
         </div>
 
         {/* ── Right: Finishing order ── */}
-        <div style={{ flex: 1, overflowY: "auto", padding: "20px 28px" }}>
+        <div className="sim-finishing-area" style={{ flex: 1, overflowY: "auto", padding: "20px 28px" }}>
           <div style={{ marginBottom: "14px", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "480px" }}>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.16em", color: "var(--text-muted)" }}>
               {isSprint ? "SPRINT ORDER" : "FINISHING ORDER"}
