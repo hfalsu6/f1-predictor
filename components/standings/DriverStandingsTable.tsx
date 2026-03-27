@@ -1,6 +1,39 @@
 "use client";
+import { useState } from "react";
 import type { DriverStanding } from "@/types/f1";
 import { getConstructorColor } from "@/lib/api/mappers";
+import { getDriverImageUrl } from "@/constants/f1";
+
+function DriverAvatar({ driverId, initials, color, isLeader, r, g, b }: {
+  driverId: string; initials: string; color: string; isLeader: boolean;
+  r: number; g: number; b: number;
+}) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const src = getDriverImageUrl(driverId);
+
+  return (
+    <div style={{
+      width: "40px", height: "40px", borderRadius: "50%", flexShrink: 0,
+      background: `rgba(${r},${g},${b},0.14)`,
+      border: `2px solid ${isLeader ? color : "transparent"}`,
+      overflow: "hidden",
+      display: "flex", alignItems: "center", justifyContent: "center",
+    }}>
+      {src && !imgFailed ? (
+        <img
+          src={src}
+          alt={initials}
+          onError={() => setImgFailed(true)}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+        />
+      ) : (
+        <span style={{ fontSize: "12px", fontWeight: 700, color, fontFamily: "var(--font-sans)" }}>
+          {initials}
+        </span>
+      )}
+    </div>
+  );
+}
 
 interface DriverStandingsTableProps {
   standings: DriverStanding[];
@@ -68,16 +101,13 @@ export function DriverStandingsTable({ standings, onDriverClick }: DriverStandin
               <td style={{ padding: "14px 20px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                   {/* Avatar */}
-                  <div style={{
-                    width: "38px", height: "38px", borderRadius: "50%", flexShrink: 0,
-                    background: `rgba(${r},${g},${b},0.14)`,
-                    border: `2px solid ${isLeader ? color : "transparent"}`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    <span style={{ fontSize: "12px", fontWeight: 700, color, fontFamily: "var(--font-sans)" }}>
-                      {initials}
-                    </span>
-                  </div>
+                  <DriverAvatar
+                    driverId={s.driver.driverId}
+                    initials={initials}
+                    color={color}
+                    isLeader={isLeader}
+                    r={r} g={g} b={b}
+                  />
                   <div>
                     <p style={{ fontSize: "14px", fontWeight: 700, color: "var(--text-primary)", margin: "0 0 2px", fontFamily: "var(--font-sans)" }}>
                       {s.driver.givenName} {s.driver.familyName}

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { fetchDriverSeasonSummary, type DriverSeasonSummary } from "@/lib/api/driver-results";
 import { getConstructorColor } from "@/lib/api/mappers";
+import { getDriverImageUrl } from "@/constants/f1";
 import type { DriverStanding } from "@/types/f1";
 
 interface Props {
@@ -27,25 +28,18 @@ function PointsSparkline({ points }: { points: number[] }) {
 export function DriverProfileDrawer({ standing, onClose }: Props) {
   const [summary, setSummary] = useState<DriverSeasonSummary | null>(null);
   const [loading, setLoading] = useState(false);
-  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [imgFailed, setImgFailed] = useState(false);
 
   useEffect(() => {
-    if (!standing) { setSummary(null); setPhotoUrl(null); return; }
+    if (!standing) { setSummary(null); return; }
     setLoading(true);
     setSummary(null);
-    setPhotoUrl(null);
+    setImgFailed(false);
 
     fetchDriverSeasonSummary(standing.driver.driverId).then(s => {
       setSummary(s);
       setLoading(false);
     });
-
-    // Fetch driver headshot from Wikipedia REST API (no hotlink restrictions)
-    const wikiTitle = `${standing.driver.givenName} ${standing.driver.familyName}`.replace(/ /g, "_");
-    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => { if (data?.thumbnail?.source) setPhotoUrl(data.thumbnail.source); })
-      .catch(() => {});
   }, [standing?.driver.driverId]);
 
   if (!standing) return null;
@@ -108,24 +102,30 @@ export function DriverProfileDrawer({ standing, onClose }: Props) {
 
           <div style={{ display: "flex", alignItems: "flex-start", gap: "18px" }}>
             {/* Driver photo */}
-            <div style={{
-              width: "100px", height: "100px", borderRadius: "12px",
-              background: `${color}15`, border: `2px solid ${color}40`,
-              overflow: "hidden", flexShrink: 0,
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              {photoUrl ? (
-                <img
-                  src={photoUrl}
-                  alt={`${standing.driver.givenName} ${standing.driver.familyName}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
-                />
-              ) : (
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "22px", fontWeight: 800, color }}>
-                  {standing.driver.code}
-                </span>
-              )}
-            </div>
+            {(() => {
+              const photoUrl = getDriverImageUrl(standing.driver.driverId);
+              return (
+                <div style={{
+                  width: "100px", height: "120px", borderRadius: "12px",
+                  background: `${color}15`, border: `2px solid ${color}40`,
+                  overflow: "hidden", flexShrink: 0,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  {photoUrl && !imgFailed ? (
+                    <img
+                      src={photoUrl}
+                      alt={`${standing.driver.givenName} ${standing.driver.familyName}`}
+                      onError={() => setImgFailed(true)}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+                    />
+                  ) : (
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "22px", fontWeight: 800, color }}>
+                      {standing.driver.code}
+                    </span>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Driver info */}
             <div style={{ flex: 1, paddingTop: "6px", paddingRight: "40px" }}>
