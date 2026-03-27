@@ -168,6 +168,7 @@ export const DRIVER_IMAGES: Record<string, string> = {
   leclerc:          portrait("ferrari",        "chalec01"),
   hamilton:         portrait("ferrari",        "lewham01"),
   // Mercedes
+  russell:          portrait("mercedes",       "georus01"),
   george_russell:   portrait("mercedes",       "georus01"),
   antonelli:        portrait("mercedes",       "andant01"),
   kimi_antonelli:   portrait("mercedes",       "andant01"),
