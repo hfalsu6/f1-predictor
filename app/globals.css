@@ -13,9 +13,9 @@
   --accent-red:    #e00700;
   --accent-orange: #ff8000;
   --accent-green:  #39d353;
-  --font-display:  'Syne', sans-serif;
-  --font-mono:     'IBM Plex Mono', monospace;
-  --font-data:     'Barlow Condensed', sans-serif;
+  --font-display:  'Inter', sans-serif;
+  --font-mono:     'Inter', sans-serif;
+  --font-data:     'Inter', sans-serif;
   --font-sans:     'Inter', sans-serif;
 }
 
@@ -270,18 +270,23 @@ body {
     height: auto !important;
     flex: none !important;
   }
+  .sim-race-columns {
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
   .sim-driver-pool {
     width: 100% !important;
     border-right: none !important;
     border-bottom: 1px solid rgba(224,7,0,0.07) !important;
-    max-height: 380px;
-    overflow-y: auto;
+    max-height: 360px;
+    overflow-y: auto !important;
     flex-shrink: 0;
   }
   .sim-finishing-area {
     padding: 14px 16px !important;
-    overflow-y: auto;
-    max-height: 70vh;
+    overflow-y: visible !important;
+    max-height: none !important;
   }
   .sim-standings-panel {
     width: 100% !important;
@@ -309,4 +314,13 @@ body {
   .sim-race-bar-location { display: none; }
   /* Multi-race progress: horizontal scroll */
   .sim-timeline { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Title Watch: stack vertically */
+  .title-watch-layout {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .title-watch-sidebar {
+    width: 100% !important;
+  }
 }

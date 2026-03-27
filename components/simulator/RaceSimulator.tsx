@@ -443,13 +443,15 @@ function ZoneDivider({ label }: { label: string }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Main — single DndContext wraps both panels
 // ─────────────────────────────────────────────────────────────────────────────
-export function RaceSimulator({ mode = "race" }: { mode?: "race" | "sprint" }) {
+export function RaceSimulator({ mode = "race", hasSprint = false }: { mode?: "race" | "sprint"; hasSprint?: boolean }) {
   const [activeDriverId, setActiveDriverId] = useState<string | null>(null);
   const haptic = useWebHaptics();
 
   const baselineStandings     = useSimulationStore((s) => s.baselineDriverStandings);
   const simulations           = useSimulationStore((s) => s.simulations);
   const currentRaceIndex      = useSimulationStore((s) => s.currentRaceIndex);
+  const activeTab             = useSimulationStore((s) => s.activeTab);
+  const setActiveTab          = useSimulationStore((s) => s.setActiveTab);
   const assignPosition        = useSimulationStore((s) => s.assignPosition);
   const assignDNF             = useSimulationStore((s) => s.assignDNF);
   const clearDriver           = useSimulationStore((s) => s.clearDriver);
@@ -566,7 +568,7 @@ export function RaceSimulator({ mode = "race" }: { mode?: "race" | "sprint" }) {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div style={{ display: "flex", height: "100%", overflow: "hidden", width: "100%" }}>
+      <div className="sim-race-columns" style={{ display: "flex", height: "100%", overflow: "hidden", width: "100%" }}>
 
         {/* ── Left: Team-grouped driver pool ── */}
         <div
@@ -626,6 +628,58 @@ export function RaceSimulator({ mode = "race" }: { mode?: "race" | "sprint" }) {
 
         {/* ── Right: Finishing order ── */}
         <div className="sim-finishing-area" style={{ flex: 1, overflowY: "auto", padding: "20px 28px" }}>
+
+          {/* Sprint / Race tab switcher — shown prominently when race has a sprint */}
+          {hasSprint && (
+            <div style={{ maxWidth: "480px", marginBottom: "18px" }}>
+              <div style={{
+                display: "flex",
+                borderRadius: "8px",
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.03)",
+              }}>
+                <button
+                  onClick={() => setActiveTab("sprint")}
+                  style={{
+                    flex: 1, padding: "10px 16px",
+                    border: "none", cursor: "pointer",
+                    fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    transition: "all 0.18s ease",
+                    background: activeTab === "sprint"
+                      ? "rgba(57,211,83,0.12)"
+                      : "transparent",
+                    color: activeTab === "sprint"
+                      ? "rgba(57,211,83,0.95)"
+                      : "var(--text-muted)",
+                    borderRight: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  SPRINT
+                </button>
+                <button
+                  onClick={() => setActiveTab("race")}
+                  style={{
+                    flex: 1, padding: "10px 16px",
+                    border: "none", cursor: "pointer",
+                    fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    transition: "all 0.18s ease",
+                    background: activeTab === "race"
+                      ? "rgba(232,0,45,0.12)"
+                      : "transparent",
+                    color: activeTab === "race"
+                      ? "rgba(232,0,45,0.95)"
+                      : "var(--text-muted)",
+                  }}
+                >
+                  GRAND PRIX
+                </button>
+              </div>
+            </div>
+          )}
+
           <div style={{ marginBottom: "14px", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "480px" }}>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.16em", color: "var(--text-muted)" }}>
               {isSprint ? "SPRINT ORDER" : "FINISHING ORDER"}

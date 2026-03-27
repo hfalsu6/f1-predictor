@@ -278,57 +278,6 @@ export function SimulatorLayout({
             })}
           </span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "12px" }}>
-            {/* Sprint / Race tab switcher */}
-            {currentRace?.hasSprint && (
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "2px",
-                padding: "2px",
-                background: "rgba(255,255,255,0.04)",
-                borderRadius: "6px",
-                border: "1px solid var(--border)",
-              }}>
-                <button
-                  onClick={() => setActiveTab("sprint")}
-                  style={{
-                    padding: "3px 10px",
-                    borderRadius: "4px",
-                    border: "none",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
-                    letterSpacing: "0.1em",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    transition: "all 0.15s ease",
-                    background: activeTab === "sprint" ? "rgba(57,211,83,0.15)" : "transparent",
-                    color: activeTab === "sprint" ? "rgba(57,211,83,0.9)" : "var(--text-muted)",
-                    borderColor: activeTab === "sprint" ? "rgba(57,211,83,0.3)" : "transparent",
-                  }}
-                >
-                  SPRINT
-                </button>
-                <button
-                  onClick={() => setActiveTab("race")}
-                  style={{
-                    padding: "3px 10px",
-                    borderRadius: "4px",
-                    border: "none",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
-                    letterSpacing: "0.1em",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    transition: "all 0.15s ease",
-                    background: activeTab === "race" ? "rgba(232,0,45,0.15)" : "transparent",
-                    color: activeTab === "race" ? "rgba(232,0,45,0.9)" : "var(--text-muted)",
-                    borderColor: activeTab === "race" ? "rgba(232,0,45,0.3)" : "transparent",
-                  }}
-                >
-                  RACE
-                </button>
-              </div>
-            )}
             {currentRace && getFlagUrl && (
               <img
                 src={getFlagUrl(currentRace.country)}
@@ -377,7 +326,7 @@ export function SimulatorLayout({
 
           {/* Panels 1 + 2: Driver pool + Finishing order (shared DndContext) */}
           <div style={{ flex: 1, overflow: "hidden", display: "flex" }}>
-            <RaceSimulator mode={activeTab} />
+            <RaceSimulator mode={activeTab} hasSprint={currentRace?.hasSprint ?? false} />
           </div>
 
           {/* Panel 3: Projected standings */}

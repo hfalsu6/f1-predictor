@@ -19,10 +19,10 @@ export function TitleWatchClient({ standings, futureRaces, completedCount }: Pro
   const maxPossible = futureRaces.length * 26;
 
   return (
-    <div style={{ display: "flex", gap: "24px", alignItems: "flex-start" }}>
+    <div className="title-watch-layout" style={{ display: "flex", gap: "24px", alignItems: "flex-start" }}>
 
       {/* Left: Driver selector + gap chart */}
-      <div style={{ width: "300px", flexShrink: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+      <div className="title-watch-sidebar" style={{ width: "300px", flexShrink: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
         <h2 style={{ fontSize: "12px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 6px" }}>
           Contenders
         </h2>
